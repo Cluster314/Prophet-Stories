@@ -1,33 +1,785 @@
-*{
-    color: deepskyblue;
-    text-shadow: 0px 0px 5px deepskyblue;
+:root {
+    --blue: #04bfff;
+    --blue-bright: #35cfff;
+    --blue-dark: #008fc4;
+
+    --bg: #05080b;
+    --bg-secondary: #091017;
+    --card: rgba(12, 22, 30, 0.78);
+    --card-hover: rgba(15, 31, 42, 0.95);
+
+    --text: #edfaff;
+    --text-secondary: #a9c4cf;
+    --text-muted: #6f8994;
+
+    --border: rgba(4, 191, 255, 0.18);
+    --border-hover: rgba(4, 191, 255, 0.55);
+
+    --max-width: 1100px;
+    --reading-width: 900px;
+
+    --radius: 18px;
 }
-hr{
-    border: 1px solid deepskyblue;
-    box-shadow: 0px 0px 5px deepskyblue;
+
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    box-sizing: border-box;
 }
-body{
-    background-color: black;
+
+html {
+    scroll-behavior: smooth;
 }
-h1{
-    font-size: 50px;
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(4, 191, 255, 0.13),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.75;
 }
-h2{
-    font-size: 40px;
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
-h3{
-    font-size: 30px;
+
+
+/* ================================
+   GLOBAL SELECTION
+================================ */
+
+::selection {
+    background: rgba(4, 191, 255, 0.3);
+    color: white;
 }
-p{
+
+
+/* ================================
+   HEADER
+================================ */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(5, 8, 11, 0.78);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.header-inner {
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: auto;
+
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-logo {
+    color: var(--text);
+
     font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+
+    transition: color 0.2s ease;
 }
-a{
+
+.site-logo:hover {
+    color: var(--blue);
+}
+
+.main-nav a {
+    color: var(--text-secondary);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: var(--blue);
+    background: rgba(4, 191, 255, 0.08);
+}
+
+
+/* ================================
+   HOMEPAGE
+================================ */
+
+.home-container {
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: auto;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    padding: 105px 0 90px;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    color: var(--blue);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+
+    background: rgba(4, 191, 255, 0.05);
+}
+
+.hero h1 {
+    margin: 22px 0 15px;
+
+    color: var(--text);
+
+    font-size: clamp(44px, 8vw, 78px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+
+    text-shadow:
+        0 0 35px rgba(4, 191, 255, 0.16);
+}
+
+.hero-subtitle {
+    max-width: 680px;
+    margin: auto;
+
+    color: var(--text-secondary);
+
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.hero-line {
+    width: 70px;
+    height: 2px;
+
+    margin: 35px auto 0;
+
+    background: var(--blue);
+
+    box-shadow:
+        0 0 14px rgba(4, 191, 255, 0.55);
+}
+
+
+/* ================================
+   SECTIONS
+================================ */
+
+.stories-section,
+.about-section {
+    padding: 45px 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 28px;
+}
+
+.section-number {
+    color: var(--blue);
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    opacity: 0.8;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    color: var(--text);
+
     font-size: 30px;
-    transition: 0.5s;
+    line-height: 1.2;
 }
-a:hover{
-        text-shadow: 0px 0px 10px deepskyblue;
+
+.section-heading p {
+    margin: 5px 0 0;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
 }
-li{
-    font-size: 30px;
+
+
+/* ================================
+   STORY CARDS
+================================ */
+
+.story-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(290px, 1fr));
+
+    gap: 18px;
+}
+
+.story-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    min-height: 180px;
+
+    padding: 25px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.story-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: var(--blue);
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+
+    background: var(--card-hover);
+
+    border-color: var(--border-hover);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(4, 191, 255, 0.07);
+}
+
+.story-card:hover::before {
+    opacity: 1;
+}
+
+.story-card-number {
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    color: var(--blue);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    background: rgba(4, 191, 255, 0.05);
+}
+
+.story-card-content {
+    min-width: 0;
+}
+
+.story-status {
+    display: inline-block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.story-status.available {
+    color: var(--blue);
+}
+
+.story-card h3 {
+    margin: 0 0 5px;
+
+    color: var(--text);
+
+    font-size: 21px;
+    line-height: 1.3;
+}
+
+.story-card p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.story-arrow {
+    margin-left: auto;
+
+    color: var(--blue);
+
+    font-size: 25px;
+
+    transition: transform 0.2s ease;
+}
+
+.story-card:hover .story-arrow {
+    transform: translateX(5px);
+}
+
+.coming-soon {
+    cursor: default;
+    opacity: 0.62;
+}
+
+.coming-soon:hover {
+    transform: none;
+    background: var(--card);
+    border-color: var(--border);
+    box-shadow: none;
+}
+
+.coming-soon::before {
+    display: none;
+}
+
+
+/* ================================
+   ABOUT
+================================ */
+
+.about-card {
+    padding: 28px 30px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.about-card p {
+    margin: 0 0 15px;
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.site-footer {
+    width: min(var(--max-width), calc(100% - 40px));
+
+    margin: 70px auto 0;
+    padding: 30px 0;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+/* ================================
+   STORY PAGE
+================================ */
+
+body:has(md) {
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(4, 191, 255, 0.09),
+            transparent 30%
+        ),
+        var(--bg);
+}
+
+
+/*
+   The markdown renderer turns <md>
+   into normal HTML elements.
+*/
+
+md {
+    display: block;
+
+    width: min(
+        var(--reading-width),
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+
+    padding: 80px 0 30px;
+}
+
+
+/* Story title */
+
+md h1 {
+    margin: 0 0 12px;
+
+    color: var(--text);
+
+    font-size: clamp(38px, 6vw, 60px);
+
+    line-height: 1.1;
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 0 30px rgba(4, 191, 255, 0.14);
+}
+
+
+/* Story subtitle */
+
+md h3 {
+    margin: 0 0 60px;
+
+    color: var(--blue);
+
+    font-size: 16px;
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* Section headings */
+
+md h1:not(:first-child) {
+    margin-top: 70px;
+    padding-top: 30px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: clamp(27px, 4vw, 38px);
+
+    letter-spacing: -1px;
+}
+
+
+/* Paragraphs */
+
+md p {
+    margin: 0 0 22px;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+
+/* Bold */
+
+md strong {
+    color: var(--text);
+}
+
+
+/* Lists */
+
+md ol,
+md ul {
+    margin: 20px 0 30px;
+    padding-left: 28px;
+
+    color: var(--text-secondary);
+}
+
+md li {
+    margin-bottom: 12px;
+
+    font-size: 17px;
+}
+
+
+/* Qur'an / Hadith quotations */
+
+md blockquote {
+    margin: 32px 0;
+    padding: 24px 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(4, 191, 255, 0.08),
+            rgba(4, 191, 255, 0.025)
+        );
+
+    border-left: 3px solid var(--blue);
+    border-radius: 0 14px 14px 0;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+md blockquote p {
+    margin: 0;
+
+    color: #dff7ff;
+
+    font-size: 17px;
+}
+
+
+/* Horizontal rules */
+
+md hr {
+    height: 1px;
+
+    margin: 65px 0;
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--border),
+            transparent
+        );
+
+    box-shadow: none;
+}
+
+
+/* Story links */
+
+md a {
+    color: var(--blue);
+
+    transition: color 0.2s ease;
+}
+
+md a:hover {
+    color: var(--blue-bright);
+}
+
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.story-back {
+    display: block;
+
+    width: min(
+        var(--reading-width),
+        calc(100% - 40px)
+    );
+
+    margin: 15px auto 70px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.story-back:hover {
+    color: var(--blue);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        width: calc(100% - 28px);
+        min-height: 62px;
+    }
+
+    .site-logo {
+        font-size: 18px;
+    }
+
+    .home-container {
+        width: calc(100% - 28px);
+    }
+
+    .hero {
+        padding: 75px 0 60px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .stories-section,
+    .about-section {
+        padding: 30px 0;
+    }
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-card {
+        min-height: 155px;
+        padding: 21px;
+    }
+
+    md {
+        width: calc(100% - 28px);
+        padding-top: 55px;
+    }
+
+    md h1 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+
+    md h3 {
+        margin-bottom: 45px;
+    }
+
+    md h1:not(:first-child) {
+        margin-top: 55px;
+        padding-top: 25px;
+
+        font-size: 28px;
+    }
+
+    md p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    md blockquote {
+        margin: 27px 0;
+        padding: 19px 20px;
+    }
+
+    md blockquote p {
+        font-size: 16px;
+    }
+
+    md li {
+        font-size: 16px;
+    }
+
+    .story-back {
+        width: calc(100% - 28px);
+        margin-bottom: 50px;
+    }
+}
+
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }
