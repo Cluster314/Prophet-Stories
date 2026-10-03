@@ -472,76 +472,79 @@ a {
    STORY PAGE
 ================================ */
 
-body:has(md) {
+.story-page {
     background:
         radial-gradient(
             circle at 50% -10%,
-            rgba(4, 191, 255, 0.09),
-            transparent 30%
+            rgba(4, 191, 255, 0.10),
+            transparent 32%
         ),
         var(--bg);
 }
 
 
-/*
-   The markdown renderer turns <md>
-   into normal HTML elements.
-*/
+/* Reading container */
 
-md {
-    display: block;
-
+.story-page > h1,
+.story-page > h2,
+.story-page > h3,
+.story-page > p,
+.story-page > blockquote,
+.story-page > ol,
+.story-page > ul,
+.story-page > hr {
     width: min(
         var(--reading-width),
         calc(100% - 40px)
     );
 
-    margin: 0 auto;
-
-    padding: 80px 0 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
-/* Story title */
+/* Main title */
 
-md h1 {
-    margin: 0 0 12px;
+.story-page > h1 {
+    margin-top: 75px;
+    margin-bottom: 14px;
 
     color: var(--text);
 
-    font-size: clamp(38px, 6vw, 60px);
-
+    font-size: clamp(40px, 6vw, 62px);
     line-height: 1.1;
+
     letter-spacing: -2px;
 
     text-shadow:
-        0 0 30px rgba(4, 191, 255, 0.14);
+        0 0 30px rgba(4, 191, 255, 0.15);
 }
 
 
-/* Story subtitle */
+/* Subtitle */
 
-md h3 {
-    margin: 0 0 60px;
+.story-page > h3 {
+    margin-top: 0;
+    margin-bottom: 60px;
 
     color: var(--blue);
 
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
 
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
 }
 
 
 /* Section headings */
 
-md h1:not(:first-child) {
-    margin-top: 70px;
-    padding-top: 30px;
+.story-page > h1:not(:first-of-type) {
+    margin-top: 75px;
+    padding-top: 32px;
 
     border-top: 1px solid var(--border);
 
-    font-size: clamp(27px, 4vw, 38px);
+    font-size: clamp(28px, 4vw, 39px);
 
     letter-spacing: -1px;
 }
@@ -549,51 +552,56 @@ md h1:not(:first-child) {
 
 /* Paragraphs */
 
-md p {
-    margin: 0 0 22px;
+.story-page > p {
+    margin-top: 0;
+    margin-bottom: 23px;
 
     color: var(--text-secondary);
 
     font-size: 17px;
-
     line-height: 1.9;
 }
 
 
-/* Bold */
+/* Bold text */
 
-md strong {
+.story-page strong {
     color: var(--text);
 }
 
 
 /* Lists */
 
-md ol,
-md ul {
-    margin: 20px 0 30px;
-    padding-left: 28px;
+.story-page > ol,
+.story-page > ul {
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    padding-left: 32px;
 
     color: var(--text-secondary);
 }
 
-md li {
+.story-page li {
     margin-bottom: 12px;
 
     font-size: 17px;
+    line-height: 1.8;
 }
 
 
 /* Qur'an / Hadith quotations */
 
-md blockquote {
-    margin: 32px 0;
-    padding: 24px 28px;
+.story-page > blockquote {
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    padding: 23px 28px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(4, 191, 255, 0.08),
+            rgba(4, 191, 255, 0.09),
             rgba(4, 191, 255, 0.025)
         );
 
@@ -604,21 +612,25 @@ md blockquote {
         0 10px 35px rgba(0, 0, 0, 0.2);
 }
 
-md blockquote p {
+.story-page > blockquote p {
+    width: auto;
+
     margin: 0;
 
     color: #dff7ff;
 
     font-size: 17px;
+    line-height: 1.8;
 }
 
 
 /* Horizontal rules */
 
-md hr {
+.story-page > hr {
     height: 1px;
 
-    margin: 65px 0;
+    margin-top: 65px;
+    margin-bottom: 65px;
 
     border: 0;
 
@@ -629,23 +641,104 @@ md hr {
             var(--border),
             transparent
         );
-
-    box-shadow: none;
 }
 
 
-/* Story links */
+/* Links inside story */
 
-md a {
+.story-page a {
     color: var(--blue);
 
     transition: color 0.2s ease;
 }
 
-md a:hover {
+.story-page a:hover {
     color: var(--blue-bright);
 }
 
+
+/* Back button */
+
+.story-back {
+    display: block;
+
+    width: min(
+        var(--reading-width),
+        calc(100% - 40px)
+    );
+
+    margin: 25px auto 70px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.story-back:hover {
+    color: var(--blue);
+}
+
+
+/* ================================
+   STORY MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .story-page > h1,
+    .story-page > h2,
+    .story-page > h3,
+    .story-page > p,
+    .story-page > blockquote,
+    .story-page > ol,
+    .story-page > ul,
+    .story-page > hr {
+        width: calc(100% - 28px);
+    }
+
+    .story-page > h1 {
+        margin-top: 55px;
+
+        font-size: 37px;
+        letter-spacing: -1px;
+    }
+
+    .story-page > h3 {
+        margin-bottom: 45px;
+
+        font-size: 15px;
+    }
+
+    .story-page > h1:not(:first-of-type) {
+        margin-top: 55px;
+        padding-top: 27px;
+
+        font-size: 28px;
+    }
+
+    .story-page > p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .story-page > blockquote {
+        padding: 19px 20px;
+    }
+
+    .story-page > blockquote p {
+        font-size: 16px;
+    }
+
+    .story-page li {
+        font-size: 16px;
+    }
+
+    .story-back {
+        width: calc(100% - 28px);
+        margin-bottom: 50px;
+    }
+}
 
 /* ================================
    BACK BUTTON
